@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
-import ClientFilesApi from '../../apis/ClientFilesApi'
 
 const RMTLogin = ({setAuth}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const body = {email, password}
+
     const handleLogin = async (e) => {
         e.preventDefault()
         try {
-            const response = await ClientFilesApi.post('/rmtlogin', {
-                email,
-                password
+            const response = await fetch ('http://localhost:5000/api/1/rmtlogin', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
             })
-            if (response.data.token) {
-                localStorage.setItem("token", response.data.token)
+            const parseRes = await response.json()
+            if (parseRes.token) {
+                localStorage.setItem("token", parseRes.token)
                 setAuth(true)
             } else {
                 setAuth(false)

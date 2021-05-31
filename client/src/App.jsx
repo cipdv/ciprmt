@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './App.css'
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
-import ClientFilesApi from './apis/ClientFilesApi'
 
 //Components
 import Homepage from './routes/Homepage'
@@ -28,30 +27,29 @@ import RMTLogin from './components/RMT/RMTLogin'
     setAuthenticated(boolean)
   }
 
-  async function isAuth() {
-    try{
-      const response = await ClientFilesApi("/verified", {
-        method: "GET",
-        headers: {token: localStorage.token}
-      })
-      response.data === true ? setAuthenticated(true) : setAuthenticated(false)
-    } catch (error) {
-      console.error(error.message)
-    }
-  }
-
   // async function isAuth() {
   //   try{
-  //     const response = await fetch ("http://localhost:5000/verified", {
-  //       method: "GET",
+  //     const response = await ClientFilesApi.get("/verified", {
   //       headers: {token: localStorage.token}
   //     })
-  //     const parseRes = await response.json()
-  //     parseRes === true ? setAuthenticated(true) : setAuthenticated(false)
+  //     response.data === true ? setAuthenticated(true) : setAuthenticated(false)
   //   } catch (error) {
   //     console.error(error.message)
   //   }
   // }
+
+  async function isAuth() {
+    try{
+      const response = await fetch ("http://localhost:5000/api/1/verified", {
+        method: "GET",
+        headers: {token: localStorage.token}
+      })
+      const parseRes = await response.json()
+      parseRes === true ? setAuthenticated(true) : setAuthenticated(false)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
 
   useEffect(()=> {
     isAuth()

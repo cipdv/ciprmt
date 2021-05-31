@@ -12,7 +12,7 @@ const DashboardHeader = ({setAuth}) => {
     return (
         <div>
             <div className="ui headcolour grey inverted menu">
-                <div className="ui item"><Link to="/rmt/dashboard">Dashboard</Link></div>
+                <div className="ui item"><Link to="/rmt/dashboard">Cip de Vries, RMT</Link></div>
                 <div onClick={logout} className="ui item right">Logout</div>
             </div>
         </div>

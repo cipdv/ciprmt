@@ -24,7 +24,7 @@ const AppointmentsRoute = ({setAuth}) => {
     
         return (
             <div>
-                <RMTDashboardHeader />
+                <RMTDashboardHeader setAuth={setAuth} />
                 <h3>List of appointments</h3>
                 <AppointmentList appointments={selectedClientProfile.appointments} />
             </div>

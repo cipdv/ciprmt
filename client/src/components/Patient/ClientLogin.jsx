@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ClientFilesApi from '../../apis/ClientFilesApi'
 import Header from '../../components/Header'
 
 const ClientLogin = ({setAuth}) => {
@@ -7,16 +6,20 @@ const ClientLogin = ({setAuth}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const body = {email, password}
+
     const handleLogin = async (e) => {
         e.preventDefault()
 
         try {
-            const response = await ClientFilesApi.post('/login', {
-                email,
-                password
+            const response = await fetch ('http://localhost:5000/api/1/login', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
             })
-            if (response.data.token) {
-                localStorage.setItem("token", response.data.token)
+            const parseRes = await response.json()
+            if (parseRes.token) {
+                localStorage.setItem("token", parseRes.token)
                 setAuth(true)
             } else {
                 setAuth(false)
@@ -24,6 +27,21 @@ const ClientLogin = ({setAuth}) => {
         } catch (error) {
             console.error(error.message)
         }
+
+        // try {
+        //     const response = await ClientFilesApi.post('/login', {
+        //         email,
+        //         password
+        //     })
+        //     if (response.data.token) {
+        //         localStorage.setItem("token", response.data.token)
+        //         setAuth(true)
+        //     } else {
+        //         setAuth(false)
+        //     } 
+        // } catch (error) {
+        //     console.error(error.message)
+        // }
     }
  
     return (

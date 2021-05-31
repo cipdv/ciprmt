@@ -272,7 +272,51 @@ app.get("/api/1/clientprofile", async (req, res)=>{
 //7. add an appointment to client's profile
 app.post("/api/1/clientprofile/:id/appointments", async (req, res)=>{
     try{
-        const results = await db.query("insert into appointments (client_id, appointment_date, duration, price, treatment_purpose, findings, treatment, immediate_results, remex, treatment_plan, consent_for_treatment, time, credit, debit, cash_etransfer, send_receipt) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) returning *", [req.body.client_id, req.body.appointment_date, req.body.duration, req.body.price, req.body.treatment_purpose, req.body.findings, req.body.treatment, req.body.immediate_results, req.body.remex, req.body.treatment_plan, req.body.consent_for_treatment, req.body.time, req.body.credit, req.body.debit, req.body.cash_etransfer, req.body.send_receipt])
+        const {
+            client_id,
+            appointment_date,
+            duration,
+            price,
+            treatment_purpose,
+            findings, 
+            treatment, 
+            immediate_results,
+            remex,
+            treatment_plan,
+            consent_for_treatment,
+            time,
+            credit,
+            debit,
+            cash_etransfer,
+            send_receipt,
+            consent_glutes,
+            consent_innerthighs,
+            consent_chest,
+            consent_abdomen,
+            notes} = req.body
+        const results = await db.query("insert into appointments (client_id, appointment_date,duration, price,  treatment_purpose,findings, treatment, immediate_results, remex, treatment_plan, consent_for_treatment, time, credit, debit, cash_etransfer, send_receipt, consent_glutes, consent_innerthighs, consent_chest, consent_abdomen, notes) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) returning *", 
+            [
+            client_id,
+            appointment_date,
+            duration,
+            price,
+            treatment_purpose,
+            findings, 
+            treatment, 
+            immediate_results,
+            remex,
+            treatment_plan,
+            consent_for_treatment,
+            time,
+            credit,
+            debit,
+            cash_etransfer,
+            send_receipt,
+            consent_glutes,
+            consent_innerthighs,
+            consent_chest,
+            consent_abdomen,
+            notes])
         res.status(201).json({
             status: "appointment successfully added",
             data: {

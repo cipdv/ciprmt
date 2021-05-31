@@ -26,7 +26,7 @@ const HealthHistory = ({setAuth}) => {
             <div>
                 <RMTDashboardHeader setAuth={setAuth} />
                 <h2>{selectedClientProfile.first_name}'s Health History</h2>
-                <h4>Last updated: {selectedClientProfile && selectedClientProfile.date_updated.toString()}</h4>
+                <h4>Last updated: {selectedClientProfile && selectedClientProfile.date_updated}</h4>
                 <table className="ui celled compact table tm30">
                     <thead>
                         <th>Reason for seeking Massage Therapy</th>

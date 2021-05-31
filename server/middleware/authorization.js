@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
         const token = req.header("token")
 
         if (!token) {
-            return res.status(403).json('Not authorized to view this')
+            return res.status(403).json('No token found')
         }
 
         const payload = jwt.verify(token, process.env.jwtSecret)
@@ -17,6 +17,6 @@ module.exports = async (req, res, next) => {
 
     } catch (error) {
         console.error(error.message)
-        return res.status(403).json('Not authorized to view this')
+        return res.status(403).json('Error')
     }
 }

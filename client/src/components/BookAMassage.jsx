@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import ClientFilesApi from '../apis/ClientFilesApi'
 import {useHistory} from 'react-router-dom'
 
 const BookAMassage = () => {
@@ -7,124 +6,76 @@ const BookAMassage = () => {
     let history = useHistory();
 
     //make form fields controlled inputs by giving them their own state
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
+    const [first_name, setfirst_name] = useState("")
+    const [last_name, setlast_name] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
-    const [dateOfBirth, setDateOfBirth] = useState(null)
+    const [date_of_birth, setdate_of_birth] = useState(null)
     const [occupation, setOccupation] = useState("")
-    const [doctorName, setDoctorName] = useState("")
-    const [doctorAddress, setDoctorAddress] = useState("")
+    const [doctor_name, setdoctor_name] = useState("")
+    const [doctor_address, setdoctor_address] = useState("")
     const [service, setService] = useState("")
-    const [reason, setReason] = useState("")
-    const [otherhcp, setOtherhcp] = useState("")
-    const [massageHistory, setMassageHistory] = useState("")
-    const [cardioNone, setCardioNone] = useState(false)
-    const [cardioHBP, setCardioHBP] = useState(false)
-    const [cardioLBP, setCardioLBP] = useState(false)
-    const [cardioHeartattack, setCardioHeartattack] = useState(false)
-    const [cardioVericose, setCardioVericose] = useState(false)
-    const [cardioStroke, setCardioStroke] = useState(false)
-    const [cardioPacemaker, setCardioPacemaker] = useState(false)
-    const [cardioHeartDisease, setCardioHeartDisease] = useState(false)
-    const [respNone, setRespNone] = useState(false)
-    const [respChronicCough, setRespChronicCough] = useState(false)
-    const [respBronchitis, setRespBronchitis] = useState(false)
-    const [respAsthma, setRespAsthma] = useState(false)
-    const [respEmphysema, setRespEmphysema] = useState(false)
-    const [skinConditions, setSkinConditions] = useState("")
-    const [otherNone, setOtherNone] = useState(false)
+    const [reason_for_massage, setreason_for_massage] = useState("")
+    const [other_hcp, setother_hcp] = useState("")
+    const [massage_history, setmassage_history] = useState("")
+    const [cardio_none, setcardio_none] = useState(false)
+    const [high_blood_pressure, sethigh_blood_pressure] = useState(false)
+    const [low_blood_pressure, setlow_blood_pressure] = useState(false)
+    const [heart_attack, setheart_attack] = useState(false)
+    const [vericose_veins, setvericose_veins] = useState(false)
+    const [stroke, setstroke] = useState(false)
+    const [pacemaker, setpacemaker] = useState(false)
+    const [heart_disease, setheart_disease] = useState(false)
+    const [resp_none, setresp_none] = useState(false)
+    const [chronic_cough, setchronic_cough] = useState(false)
+    const [bronchitis, setbronchitis] = useState(false)
+    const [asthma, setasthma] = useState(false)
+    const [emphysema, setemphysema] = useState(false)
+    const [skin_conditions, setskin_conditions] = useState("")
+    const [other_none, setother_none] = useState(false)
     const [diabetes, setDiabetes] = useState(false)
     const [epilepsy, setEpilepsy] = useState(false)
     const [cancer, setCancer] = useState(false)
     const [arthritis, setArthritis] = useState(false)
-    const [chronicHeadaches, setChronicHeadaches] = useState(false)
-    const [migraineHeadaches, setMigraineHeadaches] = useState(false)
-    const [visionLoss, setVisionLoss] = useState(false)
-    const [hearingLoss, setHearingLoss] = useState(false)
+    const [chronic_headaches, setchronic_headaches] = useState(false)
+    const [migraine_headaches, setmigraine_headaches] = useState(false)
+    const [vision_loss, setvision_loss] = useState(false)
+    const [hearing_loss, sethearing_loss] = useState(false)
     const [osteoporosis, setOsteoporosis] = useState(false)
     const [haemophilia, setHaemophilia] = useState(false)
-    const [medicalConditions, setMedicalConditions] = useState("")
-    const [lossOfFeeling, setLossOfFeeling] = useState("")
+    const [medical_conditions, setmedical_conditions] = useState("")
+    const [loss_of_feeling, setloss_of_feeling] = useState("")
     const [allergies, setAllergies] = useState("")
     const [pregnant, setPregnant] = useState("")
     const [medications, setMedications] = useState("")
     const [glutes, setGlutes] = useState(false)
-    const [innerThighs, setInnerThighs] = useState(false)
+    const [inner_thighs, setinner_thighs] = useState(false)
     const [abdomen, setAbdomen] = useState(false)
-    const [chestWall, setChestWall] = useState(false)
-    const [allAreas, setAllAreas] = useState(false)
+    const [chest_wall, setchest_wall] = useState(false)
+    const [all_areas, setall_areas] = useState(false)
     const [sensitiveAreas, setSensitiveAreas] = useState("")
-    const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false)
-    const [infectiousConditions, setInfectiousConditions] = useState("")
+    const [privacy_policy, setprivacy_policy] = useState(false)
+    const [infectious_conditions, setinfectious_conditions] = useState("")
     const [password, setPassword] = useState('')
     const [address, setAddress] = useState('')
     const [pronouns, setPronouns] = useState('')
     const [surgeries, setSurgeries] = useState('')
     const [injuries, setInjuries] = useState('')
-    const [generalHealth, setGeneralHealth] = useState('')
+    const [general_health, setgeneral_health] = useState('')
+    const [date_updated, setDateUpdated] = useState('')
+
+    const body = {first_name, last_name, email, password, other_hcp, service, reason_for_massage, cardio_none, high_blood_pressure, low_blood_pressure, heart_attack, vericose_veins, stroke, pacemaker, heart_disease, resp_none, chronic_cough, bronchitis, asthma, emphysema, skin_conditions, diabetes, epilepsy, cancer, arthritis, chronic_headaches, migraine_headaches, vision_loss, hearing_loss, osteoporosis, haemophilia, medical_conditions, loss_of_feeling, allergies, pregnant, medications, phone, date_of_birth, occupation, infectious_conditions, doctor_name, doctor_address, address, pronouns, injuries, surgeries, general_health }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await ClientFilesApi.post("/clientprofiles", {
-                    first_name: firstName,
-                    last_name: lastName,
-                    email,
-                    password,
-                    phone,
-                    date_of_birth: dateOfBirth,
-                    occupation,
-                    doctor_name: doctorName,
-                    doctor_address: doctorAddress,
-                    service,
-                    reason_for_massage: reason,
-                    other_hcp: otherhcp,
-                    massage_history: massageHistory,
-                    cardio_none: cardioNone,
-                    high_blood_pressure: cardioHBP,
-                    low_blood_pressure: cardioLBP,
-                    heart_attack: cardioHeartattack,
-                    vericose_veins: cardioVericose,
-                    stroke: cardioStroke,
-                    pacemaker: cardioPacemaker,
-                    heart_disease: cardioHeartDisease,
-                    resp_none: respNone,
-                    chronic_cough: respChronicCough,
-                    bronchitis: respBronchitis,
-                    asthma: respAsthma,
-                    emphysema: respEmphysema,
-                    skin_conditions: skinConditions,
-                    other_none: otherNone,
-                    diabetes,
-                    epilepsy,
-                    cancer,
-                    arthritis,
-                    chronic_headaches: chronicHeadaches,
-                    migraine_headaches: migraineHeadaches,
-                    vision_loss: visionLoss,
-                    hearing_loss: hearingLoss,
-                    osteoporosis,
-                    haemophilia,
-                    medical_conditions: medicalConditions,
-                    loss_of_feeling: lossOfFeeling,
-                    allergies: allergies,
-                    pregnant,
-                    medications,
-                    glutes,
-                    inner_thighs: innerThighs,
-                    abdomen,
-                    chest_wall: chestWall,
-                    all_areas: allAreas,
-                    privacy_policy: privacyPolicyChecked,
-                    infectious_conditions: infectiousConditions,
-                    address,
-                    pronouns,
-                    injuries,
-                    surgeries,
-                    general_health: generalHealth
-            })        
-            localStorage.setItem("token", response.data.token)
+            const response = await fetch ("http://localhost:5000/api/1/clientprofiles", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            })
+            const parseRes = await response.json()
+            localStorage.setItem("token", parseRes.token)
             history.push(`/massagedetails`)
         } catch (err) {
             console.log(err)
@@ -145,12 +96,16 @@ const BookAMassage = () => {
             <h3>Book a Massage</h3>
             <h4 className="ui dividing header">Contact Info</h4>
             <form className="ui form">
+                <div className="field">
+                    <label>date updated</label>
+                    <input type="date" value={date_updated} onChange={e=>setDateUpdated(e.target.value)} />
+                </div>
                 <div className="two fields">
                     <div className="required field">
                         <label htmlFor="">First Name</label>
                         <input 
-                            value={firstName} 
-                            onChange={e=>setFirstName(e.target.value)} 
+                            value={first_name} 
+                            onChange={e=>setfirst_name(e.target.value)} 
                             type="text" name="first-name" 
                             placeholder="First Name"
                         />
@@ -158,8 +113,8 @@ const BookAMassage = () => {
                     <div className="required field">
                         <label htmlFor="">Last Name</label>
                         <input 
-                            value={lastName} 
-                            onChange={e=>setLastName(e.target.value)} 
+                            value={last_name} 
+                            onChange={e=>setlast_name(e.target.value)} 
                             type="text" name="last-name" 
                             placeholder="Last Name"
                         />
@@ -170,8 +125,8 @@ const BookAMassage = () => {
                             <option value="they">They/them</option>
                             <option value="she">She/her</option>
                             <option value="he">He/him</option>
-                            <option value="nopreference">No preference</option>
-                            <option value="prefernottosay">Prefer not to say</option>
+                            <option value="other">Other</option>
+                            <option value="nopreference">No preference</option>       
                         </select>
                     </div>
                 </div>
@@ -182,7 +137,7 @@ const BookAMassage = () => {
                             value={address}
                             onChange={e=>setAddress(e.target.value)}
                             type="text"
-                            placeholder="Street #, stress name, city and province"
+                            placeholder="Street #, street name, city and province"
                         />
                     </div>
                     <div className="required field">
@@ -208,7 +163,7 @@ const BookAMassage = () => {
                 <div className="two fields">
                     <div className="required field">
                         <label htmlFor="date_of_birth">Date of Birth</label>
-                        <input value={dateOfBirth} onChange={e=>setDateOfBirth(e.target.value)} type="date" name="date_of_birth"/>
+                        <input value={date_of_birth} onChange={e=>setdate_of_birth(e.target.value)} type="date" name="date_of_birth"/>
                     </div>
                     <div className="required field">
                         <label htmlFor="occupation">Occupation</label>
@@ -218,8 +173,8 @@ const BookAMassage = () => {
                 <h4 className="ui dividing header">Health History</h4>
                 <div className="two fields">
                     <div className="required field">
-                        <label htmlFor="reason">What is your reason for seeking Massage Therapy?</label>
-                        <input value={reason} onChange={e=>setReason(e.target.value)}  type="text" name="reason" placeholder="Eg. stress management, general wellbeing, pain/discomfort (please indicate areas affected)" />
+                        <label htmlFor="reason_for_massage">What is your reason_for_massage for seeking Massage Therapy?</label>
+                        <input value={reason_for_massage} onChange={e=>setreason_for_massage(e.target.value)}  type="text" name="reason_for_massage" placeholder="Eg. stress management, general wellbeing, pain/discomfort (please indicate areas affected)" />
                     </div>
                     <div className="required field">
                         <label>Service</label>
@@ -233,27 +188,27 @@ const BookAMassage = () => {
                 </div>
                 <div className="two fields">
                     <div className="field">
-                        <label htmlFor="otherhcp">Are you receiving any treatment from another health care provider?</label>
-                        <input value={otherhcp} onChange={e=>setOtherhcp(e.target.value)} type="text" name="otherhcp" placeholder="Please indicate type of treatment and provider"/>
+                        <label htmlFor="other_hcp">Are you receiving any treatment from another health care provider?</label>
+                        <input value={other_hcp} onChange={e=>setother_hcp(e.target.value)} type="text" name="other_hcp" placeholder="Please indicate type of treatment and provider"/>
                     </div>
                     <div className="field">
                         <label htmlFor="massage_history">Please describe your history with Massage Therapy</label>
-                        <input value={massageHistory} onChange={e=>setMassageHistory(e.target.value)} type="text" name="massage_history" />
+                        <input value={massage_history} onChange={e=>setmassage_history(e.target.value)} type="text" name="massage_history" />
                     </div>
                 </div>               
                 <div className="two fields">
                     <div className="required field">
                         <label htmlFor="">Physician's Full Name</label>
-                        <input value={doctorName} onChange={e=>setDoctorName(e.target.value)} type="text" name="doctor_name" placeholder=""/>
+                        <input value={doctor_name} onChange={e=>setdoctor_name(e.target.value)} type="text" name="doctor_name" placeholder=""/>
                     </div>
                     <div className="required field">
                         <label htmlFor="phone">Physician's Address</label>
-                        <input value={doctorAddress} onChange={e=>setDoctorAddress(e.target.value)} type="text" placeholder="" />
+                        <input value={doctor_address} onChange={e=>setdoctor_address(e.target.value)} type="text" placeholder="" />
                     </div>            
                 </div>
                 <div className="field">
                     <label>How would you describe your general health status?</label>
-                    <input type="text" value={generalHealth} onChange={e=>setGeneralHealth(e.target.value)} />
+                    <input type="text" value={general_health} onChange={e=>setgeneral_health(e.target.value)} />
                 </div>
                 <div className="field">
                         <div className="field">
@@ -261,7 +216,7 @@ const BookAMassage = () => {
                         </div>
                         <div className=" inline field">
                             <div className="ui checkbox" style={{marginRight: '1em'}}>
-                                <input type="checkbox" checked={otherNone} onChange={e=>{setOtherNone(e.target.checked)}} />
+                                <input type="checkbox" checked={other_none} onChange={e=>{setother_none(e.target.checked)}} />
                                 <label>None</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: "1em"}}>
@@ -281,19 +236,19 @@ const BookAMassage = () => {
                                 <label>Arthritis</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: "1em"}}>
-                                <input type="checkbox" checked={chronicHeadaches} onChange={e=>{setChronicHeadaches(e.target.checked)}} />
+                                <input type="checkbox" checked={chronic_headaches} onChange={e=>{setchronic_headaches(e.target.checked)}} />
                                 <label>Chronic Headaches</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: "1em"}}>
-                                <input type="checkbox" checked={migraineHeadaches} onChange={e=>{setMigraineHeadaches(e.target.checked)}} />
+                                <input type="checkbox" checked={migraine_headaches} onChange={e=>{setmigraine_headaches(e.target.checked)}} />
                                 <label>Migraine headaches</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: "1em"}}>
-                                <input type="checkbox" checked={visionLoss} onChange={e=>{setVisionLoss(e.target.checked)}} />
+                                <input type="checkbox" checked={vision_loss} onChange={e=>{setvision_loss(e.target.checked)}} />
                                 <label>Vision Loss</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: "1em"}}>
-                                <input type="checkbox" checked={hearingLoss} onChange={e=>{setHearingLoss(e.target.checked)}} />
+                                <input type="checkbox" checked={hearing_loss} onChange={e=>{sethearing_loss(e.target.checked)}} />
                                 <label>Hearing Loss</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: "1em"}}>
@@ -312,35 +267,35 @@ const BookAMassage = () => {
                     </div>
                     <div className="inline field">
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={cardioNone} onChange={e=>{setCardioNone(e.target.checked)}} />
+                            <input type="checkbox" checked={cardio_none} onChange={e=>{setcardio_none(e.target.checked)}} />
                             <label>None</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={cardioHBP} onChange={e=>{setCardioHBP(e.target.checked)}} />
+                            <input type="checkbox" checked={high_blood_pressure} onChange={e=>{sethigh_blood_pressure(e.target.checked)}} />
                             <label>High blood pressure</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={cardioLBP} onChange={e=>{setCardioLBP(e.target.checked)}} />
+                            <input type="checkbox" checked={low_blood_pressure} onChange={e=>{setlow_blood_pressure(e.target.checked)}} />
                             <label>Low blood pressure</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={cardioHeartattack} onChange={e=>{setCardioHeartattack(e.target.checked)}} />
+                            <input type="checkbox" checked={heart_attack} onChange={e=>{setheart_attack(e.target.checked)}} />
                             <label>History of heart attack(s)</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={cardioVericose} onChange={e=>{setCardioVericose(e.target.checked)}} />
+                            <input type="checkbox" checked={vericose_veins} onChange={e=>{setvericose_veins(e.target.checked)}} />
                             <label>Vericose veins</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={cardioStroke} onChange={e=>{setCardioStroke(e.target.checked)}} />
+                            <input type="checkbox" checked={stroke} onChange={e=>{setstroke(e.target.checked)}} />
                             <label>Stroke</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={cardioPacemaker} onChange={e=>{setCardioPacemaker(e.target.checked)}} />
+                            <input type="checkbox" checked={pacemaker} onChange={e=>{setpacemaker(e.target.checked)}} />
                             <label>Pacemaker</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={cardioHeartDisease} onChange={e=>{setCardioHeartDisease(e.target.checked)}} />
+                            <input type="checkbox" checked={heart_disease} onChange={e=>{setheart_disease(e.target.checked)}} />
                             <label>Heart disease</label>
                         </div>
                     </div>
@@ -349,40 +304,40 @@ const BookAMassage = () => {
                             <label>Do you have any of the following respiratory conditions?</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={respNone} onChange={e=>{setRespNone(e.target.checked)}} />
+                            <input type="checkbox" checked={resp_none} onChange={e=>{setresp_none(e.target.checked)}} />
                             <label>None</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={respChronicCough} onChange={e=>{setRespChronicCough(e.target.checked)}} />
+                            <input type="checkbox" checked={chronic_cough} onChange={e=>{setchronic_cough(e.target.checked)}} />
                             <label>Chronic Cough</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={respBronchitis} onChange={e=>{setRespBronchitis(e.target.checked)}} />
+                            <input type="checkbox" checked={bronchitis} onChange={e=>{setbronchitis(e.target.checked)}} />
                             <label>Bronchitis</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={respAsthma} onChange={e=>{setRespAsthma(e.target.checked)}} />
+                            <input type="checkbox" checked={asthma} onChange={e=>{setasthma(e.target.checked)}} />
                             <label>Asthma</label>
                         </div>
                         <div className="ui checkbox" style={{marginRight: '1em'}}>
-                            <input type="checkbox" checked={respEmphysema} onChange={e=>{setRespEmphysema(e.target.checked)}} />
+                            <input type="checkbox" checked={emphysema} onChange={e=>{setemphysema(e.target.checked)}} />
                             <label>Emphysema</label>
                         </div>
                     </div>
                     <div className="two fields">
                         <div className="field">
                             <label>Do you have any skin conditions?</label>
-                            <input type="text" value={skinConditions} onChange={e=>setSkinConditions(e.target.value)} name="" placeholder="List skin conditions here" />
+                            <input type="text" value={skin_conditions} onChange={e=>setskin_conditions(e.target.value)} name="" placeholder="List skin conditions here" />
                         </div>
                         <div className="field">
                             <label>Do you have any infectious conditions?</label>
-                            <input type="text" value={infectiousConditions} onChange={e=>setInfectiousConditions(e.target.value)} name="" placeholder="Please include skin, respiratory, blood such as HIV, hepatitis, herpes" />
+                            <input type="text" value={infectious_conditions} onChange={e=>setinfectious_conditions(e.target.value)} name="" placeholder="Please include skin, respiratory, blood such as HIV, hepatitis, herpes" />
                         </div>
                     </div>
                     <div className="field">
                         <div className="field">
                             <label>Do you have any other medical conditions?</label>
-                            <input type="text" value={medicalConditions} onChange={e=>setMedicalConditions(e.target.value)} name="" placeholder="List here" />
+                            <input type="text" value={medical_conditions} onChange={e=>setmedical_conditions(e.target.value)} name="" placeholder="List here" />
                         </div>
                     </div>
                     <div className="two fields">
@@ -398,7 +353,7 @@ const BookAMassage = () => {
                     <div className="field">
                         <div className="field">
                             <label>Are you experiencing a loss of feeling or sensation anywhere?</label>
-                            <input type="text" value={lossOfFeeling} onChange={e=>setLossOfFeeling(e.target.value)} name="" placeholder="Please describe what you're experiencing and where" />
+                            <input type="text" value={loss_of_feeling} onChange={e=>setloss_of_feeling(e.target.value)} name="" placeholder="Please describe what you're experiencing and where" />
                         </div>
                     </div>
                     <div className="field">
@@ -433,7 +388,7 @@ const BookAMassage = () => {
                                 <label>Glutes/buttocks</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: '1em'}}>
-                                <input type="checkbox" checked={innerThighs} onChange={e=>{setInnerThighs(e.target.checked)}} />
+                                <input type="checkbox" checked={inner_thighs} onChange={e=>{setinner_thighs(e.target.checked)}} />
                                 <label>Inner thighs</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: '1em'}}>
@@ -441,11 +396,11 @@ const BookAMassage = () => {
                                 <label>Abdomen</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: '1em'}}>
-                                <input type="checkbox" checked={chestWall} onChange={e=>{setChestWall(e.target.checked)}} />
+                                <input type="checkbox" checked={chest_wall} onChange={e=>{setchest_wall(e.target.checked)}} />
                                 <label>Chest wall</label>
                             </div>
                             <div className="ui checkbox" style={{marginRight: '1em'}}>
-                                <input type="checkbox" checked={allAreas} onChange={e=>{setAllAreas(e.target.checked)}} />
+                                <input type="checkbox" checked={all_areas} onChange={e=>{setall_areas(e.target.checked)}} />
                                 <label>I am comfortable with all of these areas being massaged</label>
                             </div>                       
                         </div>
@@ -456,7 +411,7 @@ const BookAMassage = () => {
                     </div>
                     <label>Privacy Policy</label>
                     <div className="ui checkbox">            
-                        <input type="checkbox" checked={privacyPolicyChecked} onChange={e=>{setPrivacyPolicyChecked(e.target.checked)}} />
+                        <input type="checkbox" checked={privacy_policy} onChange={e=>{setprivacy_policy(e.target.checked)}} />
                         <label>By clicking here you're indicating that you have read and understand the <a onClick={privacyPolicy}>privacy policy</a></label>
                     </div>
 
