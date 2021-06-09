@@ -48,7 +48,7 @@ create table client_profiles (
     pregnant varchar(255),
     massage_history varchar (255),
     occupation varchar (255),
-    loss_of_feeling boolean,
+    loss_of_feeling varchar (255),
     date_of_birth varchar(255),
     password varchar(255),
     address varchar(1000),
