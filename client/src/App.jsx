@@ -47,7 +47,6 @@ import RMTLogin from './components/RMT/RMTLogin'
       const parseRes = await response.json()
       parseRes === true ? setAuthenticated(true) : setAuthenticated(false)
 
-      window.location = "/"
     } catch (error) {
       console.error(error.message)
     }
