@@ -40,7 +40,7 @@ import RMTLogin from './components/RMT/RMTLogin'
 
   async function isAuth() {
     try{
-      const response = await fetch ("http://localhost:5000/api/1/verified", {
+      const response = await fetch ("/api/1/verified", {
         method: "GET",
         headers: {token: localStorage.token}
       })

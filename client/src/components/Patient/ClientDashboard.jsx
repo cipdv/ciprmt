@@ -8,7 +8,7 @@ const ClientDashboard = ({setAuth}) => {
 
     const getData = async () => {
         try {
-            const result = await fetch ("http://localhost:5000/api/1/profile", {
+            const result = await fetch ("/api/1/profile", {
                 method: 'GET',
                 headers: {token: localStorage.token}
             })

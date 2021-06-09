@@ -8,7 +8,7 @@ const ClientUpdateProfile = () => {
 
     const getData = async () => {
         try {
-            const response = await fetch ("http://localhost:5000/api/1/profile", {
+            const response = await fetch ("/api/1/profile", {
                 method: "GET",
                 headers: {token: localStorage.token}
             })
@@ -122,7 +122,7 @@ const ClientUpdateProfile = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await fetch (`http://localhost:5000/api/1/profile/update/${id}`, {
+            await fetch (`/api/1/profile/update/${id}`, {
                 method: "PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)

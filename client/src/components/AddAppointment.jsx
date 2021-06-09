@@ -56,7 +56,7 @@ const AddAppointment = ({setAuth}) => {
     const SubmitAddAppointment = async (e) => {
         e.preventDefault()
         try {
-            await fetch (`http://localhost:5000/api/1/clientprofile/${id}/appointments`, {
+            await fetch (`/api/1/clientprofile/${id}/appointments`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
