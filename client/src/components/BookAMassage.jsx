@@ -77,6 +77,7 @@ const BookAMassage = () => {
             const parseRes = await response.json()
             localStorage.setItem("token", parseRes.token)
             history.push(`/massagedetails`)
+            window.location = "/"
         } catch (err) {
             console.log(err)
         }

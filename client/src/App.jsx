@@ -42,10 +42,12 @@ import RMTLogin from './components/RMT/RMTLogin'
     try{
       const response = await fetch ("/api/1/verified", {
         method: "GET",
-        headers: {"Content-Type": "application/json", token: localStorage.token}
+        headers: {token: localStorage.token}
       })
       const parseRes = await response.json()
       parseRes === true ? setAuthenticated(true) : setAuthenticated(false)
+
+      window.location = "/"
     } catch (error) {
       console.error(error.message)
     }
