@@ -10,7 +10,7 @@ const RMTLogin = ({setAuth}) => {
     const handleLogin = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch ('http://localhost:5000/api/1/rmtlogin', {
+            const response = await fetch ('/api/1/rmtlogin', {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)

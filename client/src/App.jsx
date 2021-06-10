@@ -18,6 +18,7 @@ import ClientLogin from './components/Patient/ClientLogin'
 import ClientDashboard from './components/Patient/ClientDashboard'
 import ClientUpdateHealthHistory from './components/Patient/ClientUpdateProfile'
 import RMTLogin from './components/RMT/RMTLogin'
+import RMTRegister from './components/RMT/RMTRegister'
  
  const App = () => {
 
@@ -75,6 +76,7 @@ import RMTLogin from './components/RMT/RMTLogin'
               <Route exact path="/client/login" render={props => !authenticated ? (<ClientLogin {...props} setAuth={setAuth} />) : (<Redirect to="/client/dashboard" />)} />
               <Route exact path="/client/dashboard" render={props => authenticated ? (<ClientDashboard {...props} setAuth={setAuth} />) : (<Redirect to="/client/login" />)} />
               <Route exact path="/client/update" component={ClientUpdateHealthHistory} />
+              <Route exact path="/rmt/register" component={RMTRegister} />
             </Switch>
         </Router>
       </div>
